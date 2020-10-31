@@ -1,5 +1,8 @@
 ## UGC Priority Queue
 
+[![Build Status](https://travis-ci.org/kc596/UGCPriorityQueue.svg?branch=master)](https://travis-ci.org/kc596/UGCPriorityQueue)
+
+
 **U**nbounded **G**eneric **C**oncurrent Priority Queue in GoLang.
 
 ### Installation
