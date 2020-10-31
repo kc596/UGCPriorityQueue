@@ -16,7 +16,7 @@ type PQ struct {
 ***************************************************************************/
 
 // Returns a new max priority queue
-func NewMaxPQ() *PQ {
+func New() *PQ {
 	return &PQ{
 		n:     0,
 		nodes: make([]*Node, 0),

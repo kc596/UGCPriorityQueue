@@ -34,7 +34,7 @@ func TestPQNode(t *testing.T) {
 
 func TestPQ_Insert(t *testing.T) {
 	assert := assert.New(t)
-	pq := NewMaxPQ()
+	pq := New()
 	assert.Zero(pq.n)
 	assert.Empty(pq.nodes)
 	pq.Insert(testNode)
@@ -45,7 +45,7 @@ func TestPQ_Insert(t *testing.T) {
 
 func TestPQ_IsEmpty(t *testing.T) {
 	assert := assert.New(t)
-	pq := NewMaxPQ()
+	pq := New()
 	assert.True(pq.IsEmpty())
 	pq.Insert(testNode)
 	assert.False(pq.IsEmpty())
@@ -55,7 +55,7 @@ func TestPQ_IsEmpty(t *testing.T) {
 
 func TestPQ_Size(t *testing.T) {
 	assert := assert.New(t)
-	pq := NewMaxPQ()
+	pq := New()
 	assert.Zero(pq.Size())
 	pq.Insert(testNode)
 	assert.Equal(1, pq.Size())
@@ -69,7 +69,7 @@ func TestPQ_Size(t *testing.T) {
 
 func TestPQ_Max(t *testing.T) {
 	assert := assert.New(t)
-	pq := NewMaxPQ()
+	pq := New()
 	pq.Insert(testNode)
 	max, err := pq.Max()
 	assert.Nil(err)
@@ -82,7 +82,7 @@ func TestPQ_Max(t *testing.T) {
 
 func TestPQ_Pop(t *testing.T) {
 	assert := assert.New(t)
-	pq := NewMaxPQ()
+	pq := New()
 	pq.Insert(testNode)
 	max, err := pq.Pop()
 	assert.Nil(err)
@@ -100,7 +100,7 @@ func TestPQConcurrency(t *testing.T) {
 		nodeVal := nodeValue{K1: priority, K2: "Index" + fmt.Sprint(i), K3: struct{ K4 int }{K4: rand.Int()}}
 		nodes = append(nodes, NewNode(nodeVal, float64(priority)))
 	}
-	pq := NewMaxPQ()
+	pq := New()
 	for _, node := range nodes {
 		go pq.Insert(node)
 	}

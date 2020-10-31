@@ -20,7 +20,7 @@ import (
 
 func ExamplePQ() {
 	// create new max priority queue
-	pq := maxpq.NewMaxPQ()
+	pq := maxpq.New()
     
 	// creating new pq node with priority 1
 	node1 := maxpq.NewNode("Value1", 1)
