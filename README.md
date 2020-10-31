@@ -40,6 +40,3 @@ func ExamplePQ() {
 }
 ```
 
-
-### License
-MIT
