@@ -1,6 +1,7 @@
 ## UGC Priority Queue
 
 [![Build Status](https://travis-ci.org/kc596/UGCPriorityQueue.svg?branch=master)](https://travis-ci.org/kc596/UGCPriorityQueue)
+[![codecov](https://codecov.io/gh/kc596/UGCPriorityQueue/branch/master/graph/badge.svg?token=80KG51HA2Z)](undefined)
 
 
 **U**nbounded **G**eneric **C**oncurrent Priority Queue in GoLang.
