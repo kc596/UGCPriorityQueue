@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/kc596/UGCPriorityQueue/branch/master/graph/badge.svg?token=80KG51HA2Z)](undefined)
 
 
-**U**nbounded **G**eneric **C**oncurrent Priority Queue in GoLang.
+**U**nbuffered **G**eneric **C**oncurrent Priority Queue in GoLang.
 
 ### Installation
 
@@ -44,3 +44,32 @@ func ExamplePQ() {
 }
 ```
 
+### APIs
+
+#### maxpq.PQ
+Method | Return Type | Description
+---|---|---
+`IsEmpty()`|`bool` | Returns true if there are no nodes in priority queue
+`Size()` | `int` | Returns the number of nodes in priority queue
+`Insert(*Node)` | `void` | Adds a new node to the priority queue
+`Max()` | `*Node,error` | Returns highest priority node of the priority queue
+`Pop()` | `*Node,error` | Returns highest priority node and deletes it from priority queue
+
+
+#### maxpq.Node
+Method | Return Type
+---|---
+`GetPriority()`|`float64`
+`GetStringValue()` | `string`
+`GetFloat64Value()` | `float64` 
+`GetFloat32Value()`| `float32`
+`GetIntValue()`| `int`
+`GetInt64Value()`| `int64`
+`GetInt32Value()`| `int32`
+`GetUIntValue()`| `uint`
+`GetUInt64Value()`| `uint64`
+`GetUInt32Value()`| `uint32`
+`GetValue(target interface{})` | `void`
+
+
+ 

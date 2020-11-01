@@ -51,7 +51,7 @@ func (pq *PQ) Insert(x *Node) {
 	pq.n += 1
 }
 
-// Returns largest node of the priority queue
+// Returns highest priority node of the priority queue
 func (pq *PQ) Max() (*Node, error) {
 	pq.lock.Lock()
 	defer pq.lock.Unlock()
@@ -61,7 +61,7 @@ func (pq *PQ) Max() (*Node, error) {
 	return pq.nodes[0], nil
 }
 
-// Returns largest node and deletes it from priority queue
+// Returns highest priority node and deletes it from priority queue
 func (pq *PQ) Pop() (*Node, error) {
 	pq.lock.Lock()
 	defer pq.lock.Unlock()

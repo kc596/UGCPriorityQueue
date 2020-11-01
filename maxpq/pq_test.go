@@ -30,6 +30,50 @@ func TestPQNode(t *testing.T) {
 	var nodeValueOut nodeValue
 	node.GetValue(&nodeValueOut)
 	assert.Equal(testNodeValue, nodeValueOut)
+
+	node = NewNode("stringvalue", 100)
+	assert.Equal("stringvalue", node.GetStringValue())
+	assert.Equal(100, node.GetPriority())
+
+	float64value := rand.Float64()
+	node = NewNode(float64value, 101)
+	assert.Equal(float64value, node.GetFloat64Value())
+	assert.Equal(101, node.GetPriority())
+
+	float32value := rand.Float32()
+	node = NewNode(float32value, 102)
+	assert.Equal(float32value, node.GetFloat32Value())
+	assert.Equal(102, node.GetPriority())
+
+	intvalue := rand.Int()
+	node = NewNode(intvalue, 103)
+	assert.Equal(intvalue, node.GetIntValue())
+	assert.Equal(103, node.GetPriority())
+
+	int64value := rand.Int63()
+	node = NewNode(int64value, 104)
+	assert.Equal(int64value, node.GetInt64Value())
+	assert.Equal(104, node.GetPriority())
+
+	int32value := rand.Int31()
+	node = NewNode(int32value, 105)
+	assert.Equal(int32value, node.GetInt32Value())
+	assert.Equal(105, node.GetPriority())
+
+	uintvalue := uint(rand.Uint32())
+	node = NewNode(uintvalue, 106)
+	assert.Equal(uintvalue, node.GetUIntValue())
+	assert.Equal(106, node.GetPriority())
+
+	uint64value := rand.Uint64()
+	node = NewNode(uint64value, 107)
+	assert.Equal(uint64value, node.GetUInt64Value())
+	assert.Equal(107, node.GetPriority())
+
+	uint32value := rand.Uint32()
+	node = NewNode(uint32value, 108)
+	assert.Equal(uint32value, node.GetUInt32Value())
+	assert.Equal(108, node.GetPriority())
 }
 
 func TestPQ_Insert(t *testing.T) {
