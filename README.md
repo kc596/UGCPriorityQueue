@@ -70,6 +70,3 @@ Method | Return Type
 `GetUInt64Value()`| `uint64`
 `GetUInt32Value()`| `uint32`
 `GetValue(target interface{})` | `void`
-
-
- 
