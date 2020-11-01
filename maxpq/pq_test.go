@@ -76,7 +76,7 @@ func TestPQNode(t *testing.T) {
 	assert.Equal(testPriority+9, node.GetPriority())
 
 	x := 1
-	funcValue := func() {x++}
+	funcValue := func() { x++ }
 	node = NewNode(funcValue, testPriority+10)
 	fn := node.GetFuncValue()
 	fn()

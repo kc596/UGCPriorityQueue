@@ -18,9 +18,8 @@ type PQ struct {
 // Returns a new max priority queue
 func New() *PQ {
 	return &PQ{
-		n:     0,
-		nodes: make([]*Node, 0),
-		lock:  sync.Mutex{},
+		n:    0,
+		lock: sync.Mutex{},
 	}
 }
 
@@ -42,7 +41,11 @@ func (pq *PQ) Size() int {
 func (pq *PQ) Insert(x *Node) {
 	pq.lock.Lock()
 	defer pq.lock.Unlock()
-	pq.nodes = append(pq.nodes, x)
+	// double the size of array if necessary
+	if pq.n >= len(pq.nodes) {
+		pq.resize(2 * (len(pq.nodes) + 1))
+	}
+	pq.nodes[pq.n] = x
 	pq.swim(pq.n)
 	pq.n += 1
 }
@@ -65,10 +68,14 @@ func (pq *PQ) Pop() (*Node, error) {
 		return nil, errors.ErrNoSuchElement
 	}
 	max := pq.nodes[0]
-	pq.swap(0, pq.n-1)
 	pq.n -= 1
+	pq.swap(0, pq.n)
 	pq.nodes[pq.n] = nil
 	pq.sink(0)
+	// halve the size of array if necessary
+	if (pq.n > 0) && (pq.n == len(pq.nodes)/4) {
+		pq.resize(len(pq.nodes) / 2)
+	}
 	return max, nil
 }
 
@@ -114,4 +121,12 @@ func (pq *PQ) swap(x, y int) {
 	temp := pq.nodes[x]
 	pq.nodes[x] = pq.nodes[y]
 	pq.nodes[y] = temp
+}
+
+func (pq *PQ) resize(capacity int) {
+	temp := make([]*Node, capacity)
+	for i := 0; i < pq.n; i++ {
+		temp[i] = pq.nodes[i]
+	}
+	pq.nodes = temp
 }
