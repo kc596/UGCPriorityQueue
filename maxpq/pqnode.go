@@ -57,6 +57,10 @@ func (node *Node) GetUInt32Value() uint32 {
 	return node.value.(uint32)
 }
 
+func (node *Node) GetFuncValue() func() {
+	return node.value.(func())
+}
+
 // Populate target with value of node - must be of original type
 // This method has cost of reflection associated with it
 // Recommended to be used only when type of value is not primitive

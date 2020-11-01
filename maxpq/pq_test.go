@@ -74,6 +74,14 @@ func TestPQNode(t *testing.T) {
 	node = NewNode(uint32value, testPriority+9)
 	assert.Equal(uint32value, node.GetUInt32Value())
 	assert.Equal(testPriority+9, node.GetPriority())
+
+	x := 1
+	funcValue := func() {x++}
+	node = NewNode(funcValue, testPriority+10)
+	fn := node.GetFuncValue()
+	fn()
+	assert.Equal(2, x)
+	assert.Equal(testPriority+10, node.GetPriority())
 }
 
 func TestPQ_Insert(t *testing.T) {
