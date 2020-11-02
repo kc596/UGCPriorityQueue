@@ -70,4 +70,5 @@ Method | Return Type
 `GetUIntValue()`| `uint`
 `GetUInt64Value()`| `uint64`
 `GetUInt32Value()`| `uint32`
+`GetFuncValue()`| `func()`
 `GetValue(target interface{})` | `void`
