@@ -79,6 +79,14 @@ func (pq *PQ) Pop() (*Node, error) {
 	return max, nil
 }
 
+// Clear empties the priority queue
+func (pq *PQ) Clear() {
+	pq.lock.Lock()
+	defer pq.lock.Unlock()
+	pq.n = 0
+	pq.nodes = make([]*Node, 0)
+}
+
 /***************************************************************************
 * Helper functions to manage the heap
 ***************************************************************************/

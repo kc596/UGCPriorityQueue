@@ -170,3 +170,38 @@ func TestPQConcurrency(t *testing.T) {
 	}
 	assert.Zero(pq.Size())
 }
+
+func TestPQ_Clear(t *testing.T) {
+	assert := assert.New(t)
+	var nodes []*Node
+	for i := 0; i < 100; i++ {
+		nodeVal := nodeValue{K1: rand.Int(), K2: "Index" + fmt.Sprint(i), K3: struct{ K4 int }{K4: rand.Int()}}
+		nodes = append(nodes, NewNode(nodeVal, float64(rand.Float64())))
+	}
+	pq := New()
+	for _, node := range nodes {
+		go pq.Insert(node)
+	}
+	for pq.Size() < len(nodes) {
+		time.Sleep(10 * time.Millisecond)
+	}
+	max, err := pq.Max()
+	assert.Nil(err)
+	pq.Clear()
+	assert.Zero(pq.Size())
+	assert.True(pq.IsEmpty())
+	assert.Equal(0, pq.n)
+
+	// reinsert
+	for _, node := range nodes {
+		go pq.Insert(node)
+	}
+	for pq.Size() < len(nodes) {
+		time.Sleep(10 * time.Millisecond)
+	}
+	newMax, err := pq.Pop()
+	assert.Nil(err)
+	assert.Equal(max, newMax)
+	assert.Equal(len(nodes)-1, pq.Size())
+	assert.False(pq.IsEmpty())
+}
