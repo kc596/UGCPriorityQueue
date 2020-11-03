@@ -205,3 +205,31 @@ func TestPQ_Clear(t *testing.T) {
 	assert.Equal(len(nodes)-1, pq.Size())
 	assert.False(pq.IsEmpty())
 }
+
+func TestPQ_ClearEmptyPQ(t *testing.T) {
+	assert := assert.New(t)
+	pq := New()
+	pq.Clear()
+	var nodes []*Node
+	for i := 0; i < 100; i++ {
+		priority := 10*i - i*i // 0, 9, 16, 21, 24, 25, 24, 21, ... Max value at 4
+		nodeVal := nodeValue{K1: priority, K2: "Index" + fmt.Sprint(i), K3: struct{ K4 int }{K4: rand.Int()}}
+		nodes = append(nodes, NewNode(nodeVal, float64(priority)))
+	}
+	for _, node := range nodes {
+		go pq.Insert(node)
+	}
+	for pq.Size() < len(nodes) {
+		time.Sleep(10 * time.Millisecond)
+	}
+	max, err := pq.Max()
+	assert.Nil(err)
+	assert.Equal(nodes[5], max)
+	for range nodes {
+		go pq.Pop()
+	}
+	for pq.Size() > 0 {
+		time.Sleep(10 * time.Millisecond)
+	}
+	assert.Zero(pq.Size())
+}

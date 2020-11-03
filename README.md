@@ -55,6 +55,7 @@ Method | Return Type | Description
 `Insert(*Node)` | `void` | Adds a new node to the priority queue
 `Max()` | `*Node,error` | Returns highest priority node of the priority queue
 `Pop()` | `*Node,error` | Returns highest priority node and deletes it from priority queue
+`Clear()` | `void` | Clears the priority queue
 
 
 #### maxpq.Node
